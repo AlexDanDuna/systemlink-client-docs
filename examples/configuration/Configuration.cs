@@ -48,19 +48,10 @@ namespace NationalInstruments.SystemLink.Clients.Examples.Configuration
              * Ideally, the username and password would be read from the user at
              * run time or from a file rather than checked into source.
              */
-            var serverConfiguration = new HttpConfiguration(
-                new Uri("https://myserver"), "my_user", "my_password");
-
-            /*
-             * To access SystemLink Cloud instead of a SystemLink Server
-             * installation, log into https://www.systemlinkcloud.com and
-             * generate an API key. Then use that API key with the
-             * CloudHttpConfiguration class.
-             *
-             * Ideally, the API key would be read from a file or otherwise
-             * protected rather than checked into source.
-             */
-            var cloudConfiguration = new CloudHttpConfiguration("apikey");
+            var serverConfiguration1 = new HttpConfiguration(
+                new Uri("https://myserver"), "my_user1", "my_password1");
+            var serverConfiguration2 = new HttpConfiguration(
+                new Uri("https://myserver2"), "my_user2", "my_password2");
 
             /*
              * Configurations are shared across all SystemLink client APIs.
@@ -74,10 +65,10 @@ namespace NationalInstruments.SystemLink.Clients.Examples.Configuration
 
             /*
              * Mixing configurations enables applications to synchronize data
-             * across multiple servers and/or SystemLink Cloud.
+             * across multiple servers.
              */
-            using (var cloudManager = new TagManager(cloudConfiguration))
-            using (var serverManager = new TagManager(serverConfiguration))
+            using (var serverManager1 = new TagManager(serverConfiguration1))
+            using (var serverManager2 = new TagManager(serverConfiguration2))
             {
             }
 
