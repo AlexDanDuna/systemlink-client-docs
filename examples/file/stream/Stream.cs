@@ -16,7 +16,7 @@ namespace NationalInstruments.SystemLink.Clients.Examples.File
              * See the configuration example for how a typical application
              * might obtain a configuration.
              */
-            var configuration = ExampleConfiguration.Obtain(args, false);
+            var configuration = ExampleConfiguration.Obtain(args);
 
             // Use the FileUploader for communicating with the server.
             var fileUploader = new FileUploader(configuration);
