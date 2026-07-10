@@ -41,7 +41,7 @@ Install-Package NationalInstruments.SystemLink.Clients.Tag
 ### Examples
 
 The below getting started example creates a [double tag](https://github.com/ni/systemlink-client-docs/wiki/Tag) on
-[SystemLink Cloud](https://www.systemlinkcloud.com), writes two values to it,
+SystemLink Server, writes two values to it,
 then reads back and outputs the current value. The tag is deleted at the end
 of the example. See the [examples directory](examples) to browse additional
 code examples.
@@ -59,7 +59,8 @@ namespace GettingStarted
         static void Main(string[] args)
         {
             var apiKey = args[0]; // Not a secure way to load an API key.
-            var config = new CloudHttpConfiguration(apiKey);
+            var config = new HttpConfiguration(
+                new Uri("https://myserver"), apiKey);
 
             using (var manager = new TagManager(config))
             using (var writer = manager.CreateWriter(maxBufferTime: TimeSpan.FromSeconds(1)))
